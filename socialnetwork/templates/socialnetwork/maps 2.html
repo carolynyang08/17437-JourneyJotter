@@ -1,0 +1,64 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+      My Profile
+    </a>
+  </div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+    Home
+  </a>
+
+  <a id="id_gemini" href="{% url 'activities' %}">
+    Activities
+  </a>
+
+  <a id="id_my_trips" href="{% url 'my_trips' %}">
+    My Trips
+  </a>
+
+  <a id="id_map" href="{% url 'map' %}">
+    Map
+  </a>
+  
+  <a id="id_flights" href="{% url 'flights' %}">
+    Flights
+    </a>
+
+  <a id="id_nav_logout" href="{% url 'logout' %}">
+    Logout
+  </a>
+{% endblock %}
+
+{% block page_names %}
+  <p id="id_page_name">Home</p>
+{% endblock %}
+
+{% block map %}
+    <div id="map_info" class="map_info">
+    Map Info
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+  </div>
+  <div class="map" id="map"></div>
+  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+    ({key: "AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co", v: "weekly"});
+  </script>
+
+  <script>
+    let map;
+    initMap();
+  </script>
+
+{% endblock %}
+

@@ -1,0 +1,118 @@
+{% extends "socialnetwork/base.html" %}
+{% load static %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+      {{request.user.first_name}} {{request.user.last_name}}
+    </a>
+  </div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+      Home
+  </a>
+
+  <a id="id_nav_logout" href="{% url 'logout' %}">
+      Logout
+  </a>
+
+  <a id="id_gemini" href="{% url 'activities' %}">
+    Activities
+  </a>
+
+  <a id="id_flights_page" href="{% url 'flights' trip_id %}">
+    Flights
+  </a>
+{% endblock %}
+
+{% block page_names %}
+  <p id="id_page_name">Home</p>
+  <span id="error" class="error"></span>
+{% endblock %}
+
+{% block liked_flights %}
+<div> Liked Flights </div>
+<div> ------------- </div>
+
+<div>
+  <ol>
+    {% for f in trip.flight_results.all %}
+        {% if f.liked %}
+            <form action="{% url 'unlike_from_trip' f.id trip_id %}" method="POST">
+              Flight Combo Option: <button id="id_unfollow">Unlike</button>
+            {% csrf_token %}
+            </form>
+
+            <li>
+              <ol>
+              {% for x in f.connections.all %}
+              <div>
+                <li>
+                  <div> Flight: </div>
+                  <div> ---------------- </div>
+                  <div> Departure Airport: {{x.departure_airport}} </div>
+                  <div> Departure Time: {{x.departure_time}} </div>
+                  <div> Arrival Airport: {{x.arrival_airport}} </div>
+                  <div> Arrival Time: {{x.arrival_time}} </div>
+                  <div> Duration: {{x.duration}} </div>
+                  <div> Airplane: {{x.airplane}} </div>
+                  <div> Airline: {{x.airline}} </div>
+                  <div> Travel Class: {{x.travel_class}} </div>
+                  <div> Flight Number: {{x.flight_number}} </div>
+                  <div> Extensions: {{x.extensions}} </div>
+                </li>
+              </div>
+            {% endfor %}
+          </ol>
+          </li>
+        {% endif %}
+        
+    {% endfor %}
+    </ol>
+</div>
+
+<a id="id_flights_page" href="{% url 'flights' trip_id %}">
+  Search More Flights
+</a>
+{% endblock %}
+
+{% block map %}
+  <div id="id_ActivityBox">
+    <label>Name:</label>
+    <input id="id_activity_input_text" type="text" placeholder="Enter an activity" name="activity_name" autocomplete="off" autofocus>
+  </div>
+  <div id="activities"></div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <span id="id_place_name" class="title"></span><br />
+    <span id="id_place_address"></span>
+    <button onclick="makeActivity()"id="id_activity_button">Add Activity</button>
+  </div>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co&loading=async&libraries=places&callback=tripMap">
+  </script>
+
+  <script>
+    window.onload = getActivities;
+
+    window.setInterval(getActivities, 5000);
+
+    const makeActivityURL = function (trip_id) {
+      return "{% url 'add-activity' %}"
+    }
+
+    const myUser = "{{ request.user }}"
+
+    const tripID = "{{ trip_id }}"
+
+    const getActivitiesURL = function (trip_id) {
+      return "{% url 'get-activities' 0 %}".replace('0', trip_id)
+    }
+
+    const deleteActivityURL = function (id) {
+        return "{% url 'delete-activity' 0 %}".replace("0",id)
+    }
+
+  </script>
+{% endblock %}

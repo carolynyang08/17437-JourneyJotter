@@ -1,0 +1,230 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+      {{request.user.first_name}} {{request.user.last_name}}
+    </a>
+  </div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+      Home
+  </a>
+
+  <a id="id_nav_logout" href="{% url 'logout' %}">
+      Logout
+  </a>
+
+  <a id="id_gemini" href="{% url 'activities' %}">
+    Activities
+  </a>
+{% endblock %}
+
+{% block page_names %}
+  <p id="id_page_name">Home</p>
+{% endblock %}
+
+{% block map %}
+    <div id="map_info" class="map_info">
+    Activities:
+
+    {% for activity in activities %}
+
+    <div id="test_activity">
+      <div id="activity_title">
+         {{activity.address}} <br>
+      </div>
+
+    </div>
+    {% endfor %}
+
+    <div class="new_activity">
+      <form method="post" action="{% url 'trip' id %}">
+        <div>
+          <label for="id_activity_input_text">New activity:</label>
+          <input id="id_activity_input_text" type="text" name="new_activity">
+          <button id="id_activity_button" type="submit" name="submit-button">Add</button>
+          <span id="error" class="error"></span>
+        </div>
+        {% csrf_token %}
+      </form>
+  </div>
+  <div class="new_activity">
+  <!-- <div class="map" id="map"></div> -->
+
+  <div class="pac-card" id="pac-card">
+    <div>
+      <div id="title">Autocomplete search</div>
+      <div id="type-selector" class="pac-controls">
+        <input
+          type="radio"
+          name="type"
+          id="changetype-all"
+          checked="checked"
+        />
+        <label for="changetype-all">All</label>
+
+        <input type="radio" name="type" id="changetype-establishment" />
+        <label for="changetype-establishment">establishment</label>
+
+        <input type="radio" name="type" id="changetype-address" />
+        <label for="changetype-address">address</label>
+
+        <input type="radio" name="type" id="changetype-geocode" />
+        <label for="changetype-geocode">geocode</label>
+
+        <input type="radio" name="type" id="changetype-cities" />
+        <label for="changetype-cities">(cities)</label>
+
+        <input type="radio" name="type" id="changetype-regions" />
+        <label for="changetype-regions">(regions)</label>
+      </div>
+      <br />
+      <div id="strict-bounds-selector" class="pac-controls">
+        <input type="checkbox" id="use-location-bias" value="" checked />
+        <label for="use-location-bias">Bias to map viewport</label>
+
+        <input type="checkbox" id="use-strict-bounds" value="" />
+        <label for="use-strict-bounds">Strict bounds</label>
+      </div>
+    </div>
+    <div id="pac-container">
+      <input id="pac-input" type="text" placeholder="Enter a location" />
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <span id="place-name" class="title"></span><br />
+    <span id="place-address"></span>
+  </div>
+
+  <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+    ({key: "AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co", v: "weekly", libraries:"places"});
+  </script> -->
+    <!-- <script>
+      const tripPageURL = function (id) {
+                return "{% url 'trip' 0 %}".replace("0",id)
+            }
+    </script> -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co&callback=initMap&libraries=places&v=weekly"
+    defer
+    ></script>
+
+    <script>
+        function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 40.749933, lng: -73.98633 },
+    zoom: 13,
+    mapTypeControl: false,
+  });
+  const card = document.getElementById("pac-card");
+  const input = document.getElementById("pac-input");
+  const biasInputElement = document.getElementById("use-location-bias");
+  const strictBoundsInputElement = document.getElementById("use-strict-bounds");
+  const options = {
+    fields: ["formatted_address", "geometry", "name"],
+    strictBounds: false,
+  };
+
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
+
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  // Bind the map's bounds (viewport) property to the autocomplete object,
+  // so that the autocomplete requests use the current map bounds for the
+  // bounds option in the request.
+  autocomplete.bindTo("bounds", map);
+
+  const infowindow = new google.maps.InfoWindow();
+  const infowindowContent = document.getElementById("infowindow-content");
+
+  infowindow.setContent(infowindowContent);
+
+  const marker = new google.maps.Marker({
+    map,
+    anchorPoint: new google.maps.Point(0, -29),
+  });
+
+  autocomplete.addListener("place_changed", () => {
+    infowindow.close();
+    marker.setVisible(false);
+
+    const place = autocomplete.getPlace();
+
+    if (!place.geometry || !place.geometry.location) {
+      // User entered the name of a Place that was not suggested and
+      // pressed the Enter key, or the Place Details request failed.
+      window.alert("No details available for input: '" + place.name + "'");
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);
+    }
+
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+    infowindowContent.children["place-name"].textContent = place.name;
+    infowindowContent.children["place-address"].textContent =
+      place.formatted_address;
+    infowindow.open(map, marker);
+  });
+
+  // Sets a listener on a radio button to change the filter type on Places
+  // Autocomplete.
+  function setupClickListener(id, types) {
+    const radioButton = document.getElementById(id);
+
+    radioButton.addEventListener("click", () => {
+      autocomplete.setTypes(types);
+      input.value = "";
+    });
+  }
+
+  setupClickListener("changetype-all", []);
+  setupClickListener("changetype-address", ["address"]);
+  setupClickListener("changetype-establishment", ["establishment"]);
+  setupClickListener("changetype-geocode", ["geocode"]);
+  setupClickListener("changetype-cities", ["(cities)"]);
+  setupClickListener("changetype-regions", ["(regions)"]);
+  biasInputElement.addEventListener("change", () => {
+    if (biasInputElement.checked) {
+      autocomplete.bindTo("bounds", map);
+    } else {
+      // User wants to turn off location bias, so three things need to happen:
+      // 1. Unbind from map
+      // 2. Reset the bounds to whole world
+      // 3. Uncheck the strict bounds checkbox UI (which also disables strict bounds)
+      autocomplete.unbind("bounds");
+      autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90 });
+      strictBoundsInputElement.checked = biasInputElement.checked;
+    }
+
+    input.value = "";
+  });
+  strictBoundsInputElement.addEventListener("change", () => {
+    autocomplete.setOptions({
+      strictBounds: strictBoundsInputElement.checked,
+    });
+    if (strictBoundsInputElement.checked) {
+      biasInputElement.checked = strictBoundsInputElement.checked;
+      autocomplete.bindTo("bounds", map);
+    }
+
+    input.value = "";
+  });
+}
+
+window.initMap = initMap;
+    </script>
+  <script>
+    
+  </script>
+  
+
+{% endblock %}

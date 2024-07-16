@@ -1,0 +1,1712 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body {
+  height: 100vh;
+}
+
+#id_header_div {
+  /* background-color: #987654;  */
+  padding: 0px; 
+  text-align: right;
+  border-radius: 0px; 
+}
+
+#id_site_name {
+  display:flex;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  color: white;
+  align-items: center;
+  vertical-align: middle;
+}
+
+div#id_site_name img#id_logo_picture {
+  width: 200px;
+  height: auto;
+  padding-left: 10px;
+}
+
+.links a {
+  display: inline-block;
+  font-size: 17px;
+  color: black;
+  padding-right:20px;
+  padding-left:10px;
+  margin-left: auto;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+
+#id_header_div {
+  padding: 3px; 
+  text-align: left;
+  border-radius: 25px; 
+}
+
+.form_name {
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color:#20c997;
+}
+
+.flight-info{
+  font-family: "Poppins", sans-serif;
+  font-size:16px;
+  font-weight: 500px;
+}
+
+#id_unfollow {
+  border-radius: 100px;
+  height: 65px;
+  font-family: 'Poppins', sans-serif;
+  place-content: center;
+  position: relative;
+  font-size: 18px;
+  width: 120px;
+  background-color: #20c997;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+  margin-left: 13px;
+}
+
+#flight-inputs {
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight:500;
+}
+
+.links {
+  font-size: 20px;
+  color: white;
+  text-align: right;
+}
+
+.profile_class {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+#id_nav_global_stream {
+  padding: 0px 10px;
+}
+  
+#id_nav_logout {
+  padding: 0px 10px;
+}
+
+form#id_nav_logout {
+  display: inline-block; /* Change display to inline-block */
+  margin-top: 0; /* Remove top margin */
+  unicode-bidi: isolate;
+  background-color: white;
+  border-color: white;
+  /* display: inline-block;
+  font-size: 17px; */
+  color: black;
+  /* padding-right: 20px;
+  padding-left: 10px; */
+  margin-left: auto;
+  text-decoration: none;
+  /* margin-bottom: 10px; */
+  font-weight: 500;
+}
+
+button {
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 80px;
+  border: 1px solid #46c48b;
+  background-color: #46c48b;
+  box-shadow: none;
+  width: fit-content;
+  padding: 20px 20px;
+}
+
+form#id_nav_logout button {
+  display: inline; 
+  /* vertical-align: middle; Align button vertically with other elements */
+  /* margin-left: 10px; Add left margin to separate it from other buttons */
+  background-color: white;
+  border-color: white;
+  font-weight: 500;
+  font-size: 17px;
+  width: fit-content;
+  padding-left:0;
+  margin-bottom: 5px;
+}
+
+
+#show-login {
+  background-color: white;
+  border: 1px solid white;
+  font-size: 16px;
+  font-weight:700;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+#show-register{
+  color:white;
+  font-weight:700;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 15px;
+}
+
+.login-popup {
+  position:absolute;
+  opacity:0;
+  top:-150%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(1.25);
+  width: 600px;
+  padding: 20px 30px;
+  background: white;
+  border-radius: 10px;
+  transition: top 0ms ease-in-out 200ms, 
+              opacity 200ms ease-in-out 0ms,
+              transform 20ms ease-in-out 0ms; 
+  height: fit-content; 
+}
+
+.login-popup.active {
+  top: 50%;
+  opacity: 1;
+  transform:translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, 
+              opacity 200ms ease-in-out 0ms,
+              transform 20ms ease-in-out 0ms;  
+  border-style: solid;
+  border-color:#20c997;
+}
+
+.register-popup {
+  position:absolute;
+  opacity:0;
+  top:-150%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(1.25);
+  width: 600px;
+  padding: 20px 30px;
+  background: white;
+  border-radius: 10px;
+  transition: top 0ms ease-in-out 200ms, 
+              opacity 200ms ease-in-out 0ms,
+              transform 20ms ease-in-out 0ms; 
+  height: fit-content; 
+}
+
+.register-popup.active {
+  top: 50%;
+  opacity: 1;
+  transform:translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms, 
+              opacity 200ms ease-in-out 0ms,
+              transform 20ms ease-in-out 0ms;  
+  border-style: solid;
+  border-color:#20c997;
+}
+
+.login-heading {
+  font-size: 1.5rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin: 24px
+}
+
+.activities-heading {
+  font-size: 2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin: 24px;
+  margin-bottom: 40px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.trip-heading {
+  font-size: 2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin: 24px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.trip-creator {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(105 105 105);
+  margin: 8px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin-top: -28px;
+}
+
+.home-heading{
+  font-size: 2.2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin: 24px;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+}
+
+.home-description{
+  font-size: 1.7rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 400;
+  color: #757575;
+  margin: 30px;
+  margin-bottom: 40px;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+}
+
+.trip-left-heading{
+  font-size: 2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin: 18px;
+  margin-top: 40px;
+  margin-left: 40px;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+}
+
+#id_login_button{
+  background-color: white;
+  border: 1px solid white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#id_signup_button {
+  background-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  font-weight: 600;
+  width: fit-content;
+  padding: 15px 15px;
+}
+
+#id_redirect_login_button{
+  background-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px 5px;
+}
+
+.text-center {
+  text-align: center;
+  padding: 15px 15px
+}
+
+.button_img {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+}
+
+.login-popup .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  background: #E6E6E6;
+  color: #a1a1a1;
+  text-align: center;
+  line-height:18px;
+  border-radius:18px;
+  cursor:pointer;
+
+}
+
+.register-popup .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  background: #E6E6E6;
+  color: #a1a1a1;
+  text-align: center;
+  line-height:18px;
+  border-radius:18px;
+  cursor:pointer;
+
+}
+
+.login_button_class {
+  background-color: #fff;
+  border: 2px solid #dee2e6;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 25px;
+  height: 56px;
+  min-width: 56px;
+  padding: 12px;
+  align-items: center;
+  min-height: 32px;
+  margin-top: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 10px;
+}
+
+#google_link {
+  margin-left: 10px;
+  font-weight: 600px !important;
+}
+
+.login-separator {
+  margin-top: 16px;
+  margin-bottom: 16px !important;
+  align-items: center !important;
+  font-weight: 700 !important;
+  color: #6c757d;
+  font-size: .875rem;
+}
+
+.newacc-separator {
+  margin-top: 5px;
+  margin-bottom: 5px !important;
+  align-items: center !important;
+  font-weight: 450 !important;
+  color: #2d2d2d;
+  font-size: .875rem;
+}
+
+
+.login-form-line {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #e9ecef;
+  height: 1px;
+}
+
+.form-group form {
+  color: black;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  height: 2.1em;
+  border-radius: 7px;
+  border: 2px solid #dee2e6;
+  width: 100%;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-table {
+  width: 98%; 
+  margin: 0 auto; 
+  height:fit-content
+}
+
+.center {
+  text-align: center; 
+}
+
+.image-container {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  z-index: -1; 
+  overflow: hidden; 
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.slogan-container {
+  margin-left: 10%;
+  margin-top: 10%;
+  font-family: "Poppins", sans-serif;
+  color: #20c997;
+  font-size: 2.0vw; 
+  font-weight: bold;
+  border-style: solid;
+  /* border-color:#20c997; */
+  background-color: white;
+  border-radius: 25px;
+  padding: 15px 15px;
+}
+
+.slogan-container span {
+  display: block;
+  margin-left: 20px; /* Adjust indentation as needed */
+  font-size: .9em; /* Adjust size as needed */
+  font-weight: 300;
+}
+
+.page_names {
+  text-align: center;
+  font-size: 40px;
+  padding: .05px;
+  color: white;
+  border-radius: 25px;
+}
+
+.content {
+  width: auto;
+  font-size: x-large;
+  padding: 25px 50px;
+}
+
+.content_login {
+  width: 50%;
+  font-size: x-large;
+  padding: 25px 50px;
+}
+
+th {
+  font-weight: normal;
+  text-align: left;
+}
+
+textarea {
+  font-weight: normal;
+  text-align: left;
+  font-size: medium;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gemini-search-box{
+  align-items: center;
+  vertical-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.search-icon {
+  padding-left: 30px;
+  background: url("https://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png") no-repeat left;
+  background-size: 20px;
+  background-position: 5px;
+}
+
+#query {
+  text-align: left;
+  height: 2.5em;
+  border-radius: 5px;
+  border: 2px solid #dee2e6;
+  width: 450px;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+}
+
+#id_query_button {
+  border-radius:100px;
+  height: 65px;
+  font-family: 'Poppins', sans-serif;
+  place-content: center;
+  position: relative;
+  font-size: 18px;
+  width: 120px;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+  margin-left:13px;
+}
+
+#id_clear_all_gemini_button{
+  border-radius:100px;
+  height: 65px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 13px;
+  color:white;
+}
+
+.my_trips {
+  padding: 20px 20px;
+  border-radius: 25px;
+}
+
+/* .image_class {
+  width: 250px;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+.bio_class {
+  border-style: dotted;
+  padding: 20px 20px;
+  border-radius: 25px;
+} */
+
+input {
+  font-size: x-large;
+}
+
+.date_class {
+  font-style: italic;
+}
+
+/* .post_prof_link {
+  font-style: italic
+}
+
+.post_by {
+  font-style: italic
+} */
+
+.post_by_gemini { 
+  padding: 4.5px; 
+  text-align: left;
+  border-radius: 25px; 
+  font-family: "Poppins", sans-serif;
+  color: black;
+  border-style: solid;
+  border-color: #20c997;;
+}
+
+.post_by_query {
+  text-align: right;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-right: auto;
+  border-radius: 25px;
+  border: 1px solid #46c48b;
+  background-color: #46c48b;
+  box-shadow: none;
+  width: fit-content;
+  padding: 10px;
+}
+
+.col_title {
+  text-align: left;
+  font-style: italic;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-right: auto;
+  border-radius: 25px;
+  border: 6px solid white;
+  background-color: #a7e1c7;
+  box-shadow: none;
+  width: 50%t;
+  padding: 20px;
+}
+
+.posted_by_trip {
+  font-size: 16px;
+  font-style:italic;
+}
+
+[class^="id_gemini_text_"]{
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+[id^="id_la_"]{
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  padding-left: 15px;
+  padding-top: 20px;
+  margin-left: 20px;
+}
+
+.error {
+  color:red;
+  font-family:"Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.errors {
+  color:red;
+  font-family:"Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+/* .comment_div {
+  border-style: dotted;
+  padding: 20px 20px;
+  border-radius: 25px;
+  margin-left: 70px;
+} */
+
+.dates {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+#dates {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.trip_title {
+  /* border-style: solid;
+  border-color: #987654; */
+  /* padding: 20px 20px; */
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+#trip_title {
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+.location_img {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width:auto;
+  height:200px;
+}
+
+#test_trip {
+  border-style: solid;
+  border-color: #dee2e6;
+  width:25%;
+  border-width: 2px;
+  padding: 20px 20px;
+  border-radius: 25px;
+}
+
+#id_new_trip {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#id_trip_input_text{
+  font-family: "Poppins", sans-serif;
+  border-radius: 10px;
+  border-color:#dee2e6;
+  border-style: solid;
+}
+
+label{
+  font-family: "Poppins", sans-serif;
+}
+
+#id_add_friend_input_text{
+  text-align: left;
+  height: 2.7em;
+  border-radius: 5px;
+  border: 2px solid #dee2e6;
+  width: 70%;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+}
+
+#id_activity_input_text{
+  text-align: left;
+  height: 2.7em;
+  border-radius: 5px;
+  border: 2px solid #dee2e6;
+  width: 90%;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+}
+
+#id_add_friends_button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  border-radius: 50px;
+  font-size: 16px;
+  height: 60px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.id_trip_button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  border-radius: 50px;
+}
+
+#id_trip_button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  border-radius: 50px;
+}
+
+.test_trip {
+  border-style: solid;
+  border-color: #08717a;
+  padding: 20px 20px;
+  border-radius: 25px;
+}
+
+#map_container{
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+#map_info{
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  margin: 0px;
+  height: calc(100vh - 178px);
+  width: 70%;
+  position: sticky;
+  bottom: 0;
+}
+
+/*
+ * Activity Page Styling
+ */
+
+.invite-friend-input {
+  width: 60%;
+}
+
+/*
+ * Activity Box Styling
+ */
+
+.delete-button {
+  background-color: transparent;
+  background: url("https://www.clker.com/cliparts/G/K/o/T/X/1/icon-trash-svg.svg.med.png") no-repeat left;
+  background-size: 20px;
+  background-position: center;
+  border: transparent;
+  font-size: 18px;
+  padding: 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  width: 80px;
+  box-shadow: none;
+  width: fit-content;
+  color:rgb(18, 129, 60);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin: 10px;
+}
+
+ .flex-container {
+  display: flex;
+  height: 100%;
+}
+
+.flex-container > div {
+  background-color: white;
+  height: calc(100vh - 178px);
+}
+
+.activities-info {
+  width:100%;
+  background-color: white;
+  overflow-y: auto;
+  height: 700px;
+}
+
+.add-friend {
+  text-align: center;
+}
+
+.activity {
+  height: 150px;
+  margin: 30px;
+  display:flex;
+  border-radius: 20px;
+}
+
+.activity-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: rgb(31, 31, 31);
+  font-size: 18px;
+  text-align: left;
+  margin: 20px;
+  margin-bottom: -15px;
+}
+
+.activity-address {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgb(66, 66, 66);
+  font-size: 18px;
+  margin: 20px;
+  margin-bottom: -15px;
+}
+
+.activity-summary {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgb(66, 66, 66);
+  font-size: 15px;
+  margin: 20px;
+  padding-right: 30px;
+}
+
+.activity-details {
+  width: 100%;
+  background-color: rgb(244, 244, 244);
+  margin-right: -40px;
+  border-radius: 20px;
+}
+
+.activity-pic {
+  width: 180px;
+  border-radius: 20px;
+}
+
+.activity-img {
+  flex: 1;
+  height: 150px;
+  width: 180px;
+  object-fit: cover;
+  align-self: right;
+  border-radius: 20px;
+}
+
+.container-fluid{
+  /* display: flex;
+  justify-content: center; */
+}
+
+.row-container{
+  display:flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-side-container,
+.right-side-container {
+  /* flex:1;
+  display: inline-block;  
+  vertical-align: top;  */
+  box-sizing: border-box;
+  /* justify-content: space-between;
+  margin-right: 20px;
+  flex-basis: calc(50% - 10px); */
+}
+
+.my-trips-container{
+  margin-top: 20px;
+  width: 100%;
+}
+
+.left-side-container{
+  width: 35%;
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  border-width: 1px;
+  border-radius: 5%;
+  border-color: #dee2e6;
+  border-style: solid; 
+  margin-right: 20px;
+}
+
+.right-side-container{
+  width: 60%;
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+}
+
+#id_user_picture {
+  border-radius: 100%;
+  width: 150px; /* Set a fixed width */
+  height: 150px; /* Set a fixed height */
+  max-width: 150px;
+  object-fit: cover; 
+}
+
+
+#id_profile_name {
+  font-size: 20px;
+  font-weight:600;
+  font-family: "Poppins", sans-serif;
+}
+
+#id_profile_username {
+  font-size: 15px;
+  font-weight:400;
+  font-family: "Poppins", sans-serif;
+}
+
+
+input[type="file"] {
+  /* background-color: initial; */
+  cursor: default;
+  align-items: center;
+  color: black;
+  text-overflow: ellipsis;
+  text-align: start !important;
+  padding: initial;
+  font-weight:600;
+  font-size: 16px;
+  border: initial;
+  white-space: pre;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden !important;
+}
+
+#id_profile_picture {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column; 
+  text-align: center; 
+  padding-left: 26%;
+  max-width: 100%;
+}
+
+#id_username_and_picture{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom:4%;
+}
+
+#id_update_profile_button{
+  cursor: pointer;
+  border: none;
+  background-color: #20c997;
+  font-size: 15px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  padding: 15px 15px;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-left: 40%;
+
+}
+
+#id_edit_submit_buttons {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  padding-bottom: 4%; 
+  padding-left: 70px;
+}
+
+.friends-search-box{
+  align-items: center;
+  vertical-align: center;
+  display: flex;
+  justify-content: center;
+  width:100%;
+}
+
+#find_friends_search_bar{
+  width: 100%;
+}
+
+#user_searched {
+  text-align: left;
+  height: 2.7em;
+  border-radius: 5px;
+  border: 2px solid #dee2e6;
+  width: 70%;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+}
+
+#id_search_friends_button {
+  border-radius:100px;
+  height: 65px;
+  font-family: 'Poppins', sans-serif;
+  place-content: center;
+  position: relative;
+  font-size: 18px;
+  width: 120px;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+}
+
+.profile-heading{
+  font-size: 2rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 650;
+  color:black;
+  margin-bottom: 4%;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+}
+
+.activity-search {
+  text-align: center;
+  width: 100%;
+}
+
+.activity-subheading {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color:rgb(61, 61, 61);
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.search-icon-activity {
+  margin-left: 60px;
+  padding-left: 30px;
+  background: url("https://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png") no-repeat left;
+  background-size: 20px;
+  background-position: 5px;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.search-icon-find-activities {
+  display: inline-block;
+  text-align: center;
+  background: url("https://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png") no-repeat left;
+  background-size: 20px;
+  background-position: 5px;
+}
+
+/*
+ * Map Marker Styling
+ */
+
+/*
+ * Marker styles in unhighlighted state.
+ */
+ .activityMarker {
+  align-items: center;
+  background-color: #c44646;
+  border-radius: 50%;
+  color: #263238;
+  display: flex;
+  font-size: 14px;
+  gap: 15px;
+  height: 30px;
+  justify-content: center;
+  padding: 4px;
+  position: relative;
+  transition: all 0.3s ease-out;
+  width: 30px;
+}
+
+.activityMarker::after {
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 9px solid #c44646;
+  content: "";
+  height: 0;
+  left: 50%;
+  position: absolute;
+  top: 95%;
+  transform: translate(-50%, 0);
+  transition: all 0.3s ease-out;
+  width: 0;
+  z-index: 1;
+}
+
+.activityMarker .icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.activityMarker .icon svg {
+  height: 20px;
+  width: auto;
+}
+
+.activityMarker .details {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+}
+
+.activityMarker .address {
+  color: #9E9E9E;
+  font-size: 10px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.activityMarker .features {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.activityMarker .features > div {
+  align-items: center;
+  background: #F5F5F5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  font-size: 10px;
+  gap: 5px;
+  padding: 5px;
+}
+
+
+.activityMarker.highlight {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  padding: 8px 15px;
+  width: auto;
+}
+
+.activityMarker.highlight::after {
+  border-top: 9px solid #FFFFFF;
+}
+
+.activityMarker.highlight .details {
+  display: flex;
+}
+
+.activityMarker.highlight .icon svg {
+  width: 50px;
+  height: 50px;
+}
+#id_gem_query {
+  text-align: left;
+  height: 2.7em;
+  border-radius: 5px;
+  border: 2px solid #dee2e6;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #5a5a5a;
+  font-family: 'Poppins', sans-serif;
+  width: 600px;
+}
+
+#id_gemini_page{
+  display: inline-block;
+  font-size: 17px;
+  color: black;
+  padding-right:20px;
+  padding-left:10px;
+  margin-left: auto;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+
+
+/*
+ * Trip Box Styling
+ */
+
+.new_trip {
+  text-align: center;
+}
+
+.trip-leave-button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: rgb(95, 95, 95);
+  font-size: 18px;
+  padding: 10px 10px;
+  border-radius: 50px;
+  border:none;
+  width: 180px;
+  background-color:transparent !important;
+  border-color: rgb(194, 194, 194) !important;
+  padding: 0px;
+  text-align: center;
+  align-self:center;
+  margin: 5px !important;
+  height: 50px !important;
+}
+
+.trip-delete {
+  display:flex;
+  align-items: center;
+}
+
+.trip-leave {
+  height: 40px;
+}
+
+.leave-trip{
+  height: 40px;
+}
+
+.trip-delete-button {
+  background-color: transparent;
+  background: url("https://www.clker.com/cliparts/G/K/o/T/X/1/icon-trash-svg.svg.med.png") no-repeat left;
+  background-size: 20px;
+  background-position: center;
+  border: transparent;
+  font-size: 18px;
+  padding: 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  height: 40px;
+  box-shadow: none;
+  width: fit-content;
+  color:rgb(18, 129, 60);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.buttonBox {
+  border-radius: 40px;
+  width: 80px;
+  /* border: 2px solid #dee2e6; */
+  border: 1px solid #46c48b;
+  background-color: #46c48b;
+  box-shadow: none;
+  width: fit-content;
+  align-self: center;
+  margin-left: 50px;
+  margin-top: 20px;
+  text-decoration: none !important;
+  height: 50px;
+  padding:5px;
+}
+
+ .go-button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  font-size: 18px;
+  padding: 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: none !important;
+  margin-top: 20px;
+}
+
+.trip-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-label {
+  margin-left: 20px;
+}
+
+.date-input {
+  border-radius: 10px;
+  border-color: rgb(107, 107, 107);
+  color: #757575;
+  border: #dee2e6;
+  border-width: 2px;
+  border-style: solid;
+}
+
+ .trips-grid {
+  display: flex;
+  overflow-x:auto;
+  /* height: 500px; */
+ }
+
+.new-tag {
+  color: white;
+  background-color: orange;
+  height: 34px;
+  width: 64px;
+  border-radius: 17px;
+  font-family: 'Poppins';
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-left: 40px;
+  margin-bottom: -10px;
+  margin-top: -24px;
+  padding: 2px;
+}
+
+.trips-info {
+  width:100%;
+  background-color: white;
+  overflow-y: auto;
+  height: 500px;
+}
+
+.add-friend {
+  text-align: center;
+}
+
+.trip {
+  height: 420px;
+  margin: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: rgb(31, 31, 31);
+  font-size: 18px;
+  text-align: left;
+  margin: 20px;
+  margin-bottom: -10px;
+}
+
+.trip-address {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgb(66, 66, 66);
+  font-size: 18px;
+  margin: 20px;
+}
+
+.trip-dates {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgb(66, 66, 66);
+  font-size: 15px;
+  margin: 20px;
+  text-align: left !important;
+}
+
+.trip-summary {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgb(66, 66, 66);
+  font-size: 15px;
+  padding-right: 30px;
+}
+
+.trip-details {
+  /* z-index: -1; */
+  width: 250px;
+  height: 250px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 20px;
+  margin-top: -40px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.trip-pic {
+  z-index: 999;
+  margin-top: 30px;
+  width: 250px;
+  border-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.trip-img {
+  flex: 1;
+  height: 170px;
+  width: 250px;
+  object-fit: cover;
+  align-self: right;
+  border-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.trip-search {
+  text-align: center;
+  width: 100%;
+}
+
+.trip-subheading {
+  font-size: 1.5rem;
+  font-weight: 550;
+  color:rgb(61, 61, 61);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#id_trips{
+  display: inline-block; 
+  padding: 10px 20px; 
+  background-color: #20c997; 
+  color: white; 
+  margin-left: 40%;
+  margin-top: 2%;
+  text-decoration: none; 
+  border-radius: 10px; 
+  border: none; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+#id_gemini{
+  display: inline-block; 
+  padding: 10px 20px; 
+  background-color: #20c997; 
+  color: white; 
+  margin-left: 40%;
+  margin-top: 2%;
+  text-decoration: none; 
+  border-radius: 10px; 
+  border: none; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+#id_trip{
+  display: inline-block; 
+  padding: 10px 20px; 
+  background-color: #20c997; 
+  color: white; 
+  text-decoration: none; 
+  border-radius: 10px; 
+  border: none; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}
+
+#id_flights{
+  display: inline-block;
+  font-size: 17px;
+  color: black;
+  padding-right:20px;
+  padding-left:10px;
+  margin-left: auto;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+#id_flights_page{
+  display: inline-block; 
+  padding: 10px 20px; 
+  background-color: #20c997; 
+  color: white; 
+  margin-left: 41%;
+  margin-top: 2%;
+  text-decoration: none; 
+  border-radius: 10px; 
+  border: none; 
+  cursor: pointer; 
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.search-icon-trip {
+  margin-left: 60px;
+  padding-left: 30px;
+  background: url("https://www.clker.com/cliparts/w/r/Q/0/x/D/search-icon-light-grey-md.png") no-repeat left;
+  background-size: 20px;
+  background-position: 5px;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.info-heading {
+  font-size: 1.3rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 400;
+  color: #757575;
+  margin: 30px;
+  margin-bottom: 40px;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+}
+
+.gem-columns{
+  overflow: hidden; /* Clear floats */
+}
+
+#gem-queries {
+  float: left;
+  width: 50%;
+}
+
+#gem-notes {
+  float: left;
+  width: 50%;
+}
+
+.heart-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.heart-btn svg {
+  margin-right: 8px;
+}
+
+.la_notes_button {
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.la_notes_input {
+  width: 600px; /* Set width as desired */
+  height: 60px; /* Set height as desired */
+  border: 1px solid #ccc; /* Add border */
+  padding: 20px; /* Add padding */
+  box-sizing: border-box; /* Ensure padding is included in width */
+  font-size: 14px; /* Set font size */
+  border-style: solid;
+  border-color: #20c997;
+  border-radius: 25px;
+}
+
+.la_notes_input_trips {
+  width: 700px; /* Set width as desired */
+  height: 60px; /* Set height as desired */
+  border: 1px solid #ccc; /* Add border */
+  padding: 20px; /* Add padding */
+  box-sizing: border-box; /* Ensure padding is included in width */
+  font-size: 14px; /* Set font size */
+  border-style: solid;
+  border-color: #20c997;
+  border-radius: 25px;
+}
+
+.la_notes_input::placeholder {
+  position: absolute; /* Set placeholder position to absolute */
+  top: 0; /* Position placeholder at the top */
+  left: 0; /* Position placeholder at the left */
+  padding: 10px;
+  font-size: 16px;
+}
+
+.id_la_title {
+  font-weight: bold;
+}
+
+#dislike_button {
+  font-size: 16px;
+  color: red;
+  background-color: white;
+  border: 2px solid #ff0000;
+  border-radius: 20px;
+  padding: 8px 16px;
+}
+
+.heart-btn:hover {
+  background-color: #f8d0c8; /* Change to desired hover color */
+}
+
+#dislike_button:hover {
+  background-color: #f8d0c8; /* Change to desired hover color */
+}
+
+#queries-col {
+  padding: 10px;
+}
+
+.scroll-prompt {
+  font-size: 1.5rem;
+  letter-spacing: -.02em;
+  line-height: 1;
+  font-weight: 600;
+  color:rgb(69, 69, 69);
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+#id_flight_submit_button {
+  font-size: 25px;
+  color: white;
+  font-weight:600;
+  font-family: "Poppins", sans-serif;
+  background-color: #20c997;
+  border: 2px solid #20c997;
+  border-radius: 20px;
+  padding: 10px 16px;
+}
+
+#id_follow {
+  font-size: 25px;
+  color:white;
+  font-weight:500;
+  font-family: "Poppins", sans-serif;
+  background-color: #20c997;
+  border: 2px solid #20c997;
+  border-radius: 20px;
+  padding: 10px 16px;
+}

@@ -1,0 +1,170 @@
+{% extends "socialnetwork/base.html" %}
+{% load static %}
+
+{% block links %}
+
+  <button id="show-login">Login</button>
+  <button id="show-register">Sign Up</button>
+  
+  <div class="login-popup">
+    <div class="close-button">&times;</div>
+
+    <div class="text-center">
+      <div class="login-heading"> Log in to Journey Jotter</div>
+
+      <button class="login_button_class" id="googleButton">
+        <div class="button-icon">
+          <img class="button_img" src="{% static 'socialnetwork/GoogleLoginButton__logo.png' %}">
+        </div>
+        <!-- <a title="Google" id="google_link" href="/accounts/google/login/?process=login&amp;next=%2F">Log in with Google</a> -->
+        <a href="{% url "social:begin" "google-oauth2" %}" id="google_link">Log in With Google</a>
+        {% csrf_token %}
+      </button>
+
+
+      <div class="login-separator">
+        <div class="login-form-line"></div>
+        <div class="login-subtitle">or</div>
+        <div class="login-form-line"></div>
+      </div>
+
+      <div class="form-group">
+        <form method="post" action="{% url 'login' %}" style="color: black";style="font-family: Poppins, sans-serif";>
+          <table class="form-table">
+              <tr>
+                <td class="center"><input type="text" name="username" id="id_username" class="input-field" placeholder="Username"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="password" name="password" id="id_password" class="input-field" placeholder="Password"></td>
+              </tr>
+            </table>
+          </table>
+          {% csrf_token %}
+          <button class="button_class" id="id_login_button" type="submit">Log in</button>
+        </form> 
+
+        <div class="errors"> 
+
+          <div> {{ error }} </div>
+
+        </div>
+
+        <div class="newacc-separator">
+         Don't have an account yet? 
+         <button id="id_signup_button"> <strong>Sign up</strong> </button>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+
+  <div class="register-popup">
+    <div class="close-button">&times;</div>
+
+    <div class="text-center">
+      <div class="login-heading"> Welcome to Journey Jotter </div>
+      <button class="login_button_class" id="googleButton">
+        <div class="button-icon">
+          <img class="button_img" src="{% static 'socialnetwork/GoogleLoginButton__logo.png' %}">
+        </div>
+        <a href="{% url "social:begin" "google-oauth2" %}" id="google_link">Sign in With Google</a>
+      </button>
+
+      <div class="login-separator">
+        <div class="login-form-line"></div>
+        <div class="login-subtitle">or</div>
+        <div class="login-form-line"></div>
+      </div>
+
+      <div class="form-group">
+        <form method="post" action="{% url 'register' %}" style="color: black";style="font-family: Poppins, sans-serif";>
+          <table class="form-table">
+              <tr>
+                <td class="center"><input type="text" name="first_name" id="id_first_name" class="input-field" placeholder="First Name"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="text" name="last_name" id="id_last_name" class="input-field" placeholder="Last Name"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="text" name="username" id="id_username" class="input-field" placeholder="Username"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="text" name="email" id="id_email" class="input-field" placeholder="Email"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="password" name="password" id="id_password" class="input-field" placeholder="Password"></td>
+              </tr>
+              <tr>
+                <td class="center"><input type="password" name="confirm_password" id="id_confirm_password" class="input-field" placeholder="Confirm Password"></td>
+              </tr>
+            </table>
+          </table>
+          {% csrf_token %}
+          <button class="button_class" id="id_signup_button" type="submit">Sign Up</button>
+        </form> 
+
+        <div class="errors"> 
+
+          <div> {{ register_error }} </div>
+
+        </div>
+
+        <div class="newacc-separator">
+         Have an account? 
+         <button id="id_redirect_login_button"> <strong>Log in</strong> </button>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  
+  <script>
+    document.querySelector("#show-login").addEventListener("click", function(){
+      document.querySelector(".login-popup").classList.add("active");
+    });
+    document.querySelector(".login-popup .close-button").addEventListener("click", function(){
+      document.querySelector(".login-popup").classList.remove("active");
+    });
+
+    document.querySelector("#show-register").addEventListener("click", function(){
+      document.querySelector(".register-popup").classList.add("active");
+    });
+    document.querySelector(".register-popup .close-button").addEventListener("click", function(){
+      document.querySelector(".register-popup").classList.remove("active");
+    });
+
+    document.querySelector(".register-popup #id_redirect_login_button").addEventListener("click", function(){
+      document.querySelector(".register-popup").classList.remove("active");
+      document.querySelector(".login-popup").classList.add("active");
+    });
+
+    document.querySelector(".login-popup #id_signup_button").addEventListener("click", function(){
+      document.querySelector(".login-popup").classList.remove("active");
+      document.querySelector(".register-popup").classList.add("active");
+    });
+
+  </script> 
+
+{% endblock %}
+
+
+{% block content %}
+<div class="content_login">
+  {{hello}}
+  <div class="image-container">
+    <img src="{% static 'socialnetwork/background_picture.jpg' %}" id="id_background_home">
+  </div>
+    
+
+    <div class="slogan-container">
+      Get your trip out of the group chat.
+      <span>
+        Let our web app streamline trip planning for you, so that you can focus on your amazing journey,
+        not complicated coordination. 
+      </span>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,154 @@
+{% extends "socialnetwork/base.html" %}
+
+{% load static %}
+    <link href="{% static 'socialnetwork/base.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'socialnetwork/socialnetwork.js' %}" type="text/javascript"></script>
+
+{% block links %}
+<div class="profile_class">
+  <a id="id_nav_profile" href="{% url 'profile' %}">
+    My Profile
+  </a>
+</div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+    Home
+  </a>
+
+  <a id="id_gemini" href="{% url 'activities' %}">
+  Activities
+  </a>
+
+  <a id="id_my_trips" href="{% url 'my_trips' %}">
+  My Trips
+  </a>
+
+  <a id="id_map" href="{% url 'map' %}">
+  Map
+  </a>
+
+  <a id="id_flights" href="{% url 'flights' trip_id %}">
+  Flights
+  </a>
+
+  <a id="id_nav_logout" href="{% url 'logout' %}">
+  Logout
+  </a>
+{% endblock %}
+
+{% block page_names %}
+  <p id="id_page_name">Follower Stream</p>
+{% endblock %}
+
+{% block content %}
+  <div class="message">
+    {{message}}
+  </div>
+
+  <div class="form_name">
+    Flight Search
+  </div>
+
+  <div id="flight-inputs">
+    <form action="{% url 'flights' trip_id %}" method="POST" id="flightsform">
+      <table>
+        {{form.as_table}}
+      </table>
+
+      <button type="submit" value="Submit">Submit</button>
+      {% csrf_token %}
+    </form>
+  </div>
+
+  <div>
+    <ol>
+      {% for f in new_flightsearch.possible_flights.all %}
+          {% if f.liked %}
+              <form action="{% url 'unlike' f.id new_flightsearch.id trip_id %}" method="POST">
+                Flight Combo Option: <button id="id_unfollow">Unlike</button>
+              {% csrf_token %}
+              </form>
+          {% else %}
+              <form action="{% url 'like' f.id new_flightsearch.id trip_id %}" method="POST">
+                Flight Combo Option: <button id="id_follow">Like</button>
+              {% csrf_token %}
+              </form>
+          {% endif %}
+          <li>
+            <ol>
+            {% for x in f.connections.all %}
+            <div>
+              <li>
+                <div> Flight: </div>
+                <div> ---------------- </div>
+                <div> Departure Airport: {{x.departure_airport}} </div>
+                <div> Departure Time: {{x.departure_time}} </div>
+                <div> Arrival Airport: {{x.arrival_airport}} </div>
+                <div> Arrival Time: {{x.arrival_time}} </div>
+                <div> Duration: {{x.duration}} </div>
+                <div> Airplane: {{x.airplane}} </div>
+                <div> Airline: {{x.airline}} </div>
+                <div> Travel Class: {{x.travel_class}} </div>
+                <div> Flight Number: {{x.flight_number}} </div>
+                <div> Extensions: {{x.extensions}} </div>
+              </li>
+            </div>
+          {% endfor %}
+        </ol>
+        </li>
+      {% endfor %}
+      </ol>
+  </div>
+
+  <p> PREVIOUSLY LIKED FLIGHTS </p>
+
+  <div>
+    <ol>
+      {% for f in trip.flight_results.all %}
+          {% if f.liked %}
+            {% if new_flightsearch %}
+              <form action="{% url 'unlike' f.id new_flightsearch.id trip_id %}" method="POST">
+                Flight Combo Option: <button id="id_unfollow">Unlike</button>
+              {% csrf_token %}
+              </form>
+            {% endif %}
+
+              <li>
+                <ol>
+                {% for x in f.connections.all %}
+                <div>
+                  <li>
+                    <div> Flight: </div>
+                    <div> ---------------- </div>
+                    <div> Departure Airport: {{x.departure_airport}} </div>
+                    <div> Departure Time: {{x.departure_time}} </div>
+                    <div> Arrival Airport: {{x.arrival_airport}} </div>
+                    <div> Arrival Time: {{x.arrival_time}} </div>
+                    <div> Duration: {{x.duration}} </div>
+                    <div> Airplane: {{x.airplane}} </div>
+                    <div> Airline: {{x.airline}} </div>
+                    <div> Travel Class: {{x.travel_class}} </div>
+                    <div> Flight Number: {{x.flight_number}} </div>
+                    <div> Extensions: {{x.extensions}} </div>
+                  </li>
+                </div>
+              {% endfor %}
+            </ol>
+            </li>
+          {% endif %}
+          
+      {% endfor %}
+      </ol>
+  </div>
+
+  <div>
+    {% for f in temp_print %}
+       
+    {% endfor %}
+  </div>
+
+  <div id="my-posts"></div>
+
+  <span id="error" class="error"></span>
+
+{% endblock %}

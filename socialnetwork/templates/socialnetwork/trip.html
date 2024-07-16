@@ -1,0 +1,180 @@
+{% extends "socialnetwork/base.html" %}
+{% load static %}
+
+{% block links %}
+<div class="profile_class">
+  <a id="id_nav_profile" href="{% url 'profile' %}">
+  {{user.first_name}} {{user.last_name}}
+  </a>
+</div>
+
+<a id="id_nav_global_stream" href="{% url 'global' %}">
+  Home
+</a>
+
+<a id="id_my_trips" href="{% url 'my_trips' %}">
+  My Trips
+</a>
+
+<form id="id_nav_logout" method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit"> Logout</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<span id="error" class="error"></span>
+{% endblock %}
+
+
+{% block map %}
+
+<div class="flex-container">
+  <div class="activities-info">
+    <div class="add-friend">
+      <div class="trip-heading"> Trip to {{trip_destination}} </div>
+        {% if request.user.id == trip.creator.id or request.user in trip.travelers.all %}
+          <input class="invite-friend-input search-icon" id="id_add_friend_input_text" type="text" placeholder="Enter email address" name="address"> 
+          <button class="id_trip_button" onclick="addFriends()"id="id_add_friends_button">+ Add Friends</button>
+        {% endif %}
+      </div>
+    <div class="activity-subheading">Trip Itinerary</div><br>
+    <div id="id_ActivityBox" class="activity-search">
+      <input class="search-icon-activity" id="id_activity_input_text" type="text" placeholder="Search places" name="activity_name" autocomplete="off" autofocus>
+    </div>
+    <div id="activities"></div>
+    {% for act in trip.activities.all %}
+      <div id="id_la_{{act.name}}">
+        <span class="id_la_title">{{act.name}}</span>
+        <span class="posted_by_trip">-- posted by {{act.creator.first_name}} {{act.creator.last_name}}</span>
+        <input id="id_input_{{act.name}}" type="text" name="notes_input" placeholder="Enter text..." class="la_notes_input_trips" value="{{act.note}}">
+      </div>
+    {% endfor %}
+    {% if request.user.id == trip.creator.id or request.user in trip.travelers.all %}
+      <a id="id_gemini" href="{% url 'gem_activities_stream' trip_id %}">
+        Search More Activities
+      </a>
+    {% endif %}
+
+    <div id="flights">
+
+    <div class="activity-subheading"> Liked Flights </div>
+    
+    <div>
+      <ol>
+        {% for f in trip.flight_results.all %}
+            {% if f.liked %}
+              {% if request.user.id == trip.creator.id or request.user in trip.travelers.all %}
+                <form action="{% url 'unlike_from_trip' f.id trip_id %}" method="POST">
+                  Flight Combo Option: <button id="id_unfollow">Unlike</button>
+                {% csrf_token %}
+                </form>
+    
+                {% if f.added_to_map %}
+                  <form action="{% url 'unadd' f.id trip_id %}" method="POST">
+                    <button id="id_unfollow">Unadd from Map</button>
+                  {% csrf_token %}
+                  </form>
+              {% endif %}
+            {% else %}
+              {% if request.user.id == trip.creator.id or request.user in trip.travelers.all %}
+                  <form action="{% url 'add' f.id trip_id %}" method="POST">
+                    <button id="id_follow">Add to Map</button>
+                  {% csrf_token %}
+                  </form>
+              {% endif %}
+            {% endif %}
+    
+                <li>
+                  <ol>
+                  {% for x in f.connections.all %}
+                  <div>
+                    <li>
+                      <div> Flight: </div>
+                      <div> ---------------- </div>
+                      <div> Departure Airport: {{x.departure_airport}} </div>
+                      <div> Departure Time: {{x.departure_time}} </div>
+                      <div> Arrival Airport: {{x.arrival_airport}} </div>
+                      <div> Arrival Time: {{x.arrival_time}} </div>
+                      <div> Duration: {{x.duration}} </div>
+                      <div> Airplane: {{x.airplane}} </div>
+                      <div> Airline: {{x.airline}} </div>
+                      <div> Travel Class: {{x.travel_class}} </div>
+                      <div> Flight Number: {{x.flight_number}} </div>
+                      <div> Extensions: {{x.extensions}} </div>
+                    </li>
+                  </div>
+                {% endfor %}
+              </ol>
+              </li>
+            {% endif %}
+            
+        {% endfor %}
+        </ol>
+    </div>
+    
+    {% if request.user.id == trip.creator.id or request.user in trip.travelers.all %}
+      <a id="id_flights_page" href="{% url 'flights' trip_id %}">
+        Search More Flights
+      </a>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+  <div id="map"></div>
+</div>  
+  
+  <div id="infowindow-content">
+    <span id="id_place_name" class="title"></span><br />
+    <span id="id_place_address"></span>
+    <!-- <button onclick="makeActivity()"id="id_activity_button">Add Activity</button> -->
+  </div>
+
+  <input id="user-trips" type="hidden" value={{user.trips.all}}>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co&loading=async&libraries=places&callback=tripMap">
+  </script>
+
+  <script async>  
+    window.onload = getActivities;
+
+    window.setInterval( getActivities, 5000);
+
+    const makeActivityURL = function (trip_id) {
+      return "{% url 'add-activity' %}"
+    }
+
+    const myUser = "{{ request.user }}"
+
+    const tripID = "{{ trip_id }}"
+
+    const tripDestination = "{{ trip_destination }}"
+
+    const placeID = "{{ place_id }}"
+
+    const getActivitiesURL = function (trip_id) {
+      return "{% url 'get-activities' 0 %}".replace('0', trip_id)
+    }
+
+    const deleteActivityURL = function (id) {
+        return "{% url 'delete-activity' 0 %}".replace("0",id)
+    }
+
+    const addFriendURL = function (email) {
+      return "{% url 'add-friend' 0 1 %}".replace("0", email).replace("1", tripID)
+    }
+
+  </script>
+{% endblock %}

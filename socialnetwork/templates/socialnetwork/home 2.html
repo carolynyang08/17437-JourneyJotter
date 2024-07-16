@@ -1,0 +1,29 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block links %}
+  <a id="id_register_link" href="{% url 'register' %}">
+    Register
+  </a>
+{% endblock %}
+
+{% block page_names %}
+  <p id="id_page_name">Login</p>
+{% endblock %}
+
+{% block content %}
+  <p>Login to the Journey Jotter:</p>
+
+  <form method="post" action="{% url 'login' %}">
+      <table>
+          {{form.as_table}}
+      </table>
+      {% csrf_token %}
+      <button class="button_class" id="id_login_button" type="submit">Submit</button>
+      
+    <button class="button_class" id="googleButton">
+        <a title="Google" href="/accounts/google/login/?process=login&amp;next=%2F">Sign in with Google</a>
+    </button> 
+            
+      
+  </form>
+{% endblock %}

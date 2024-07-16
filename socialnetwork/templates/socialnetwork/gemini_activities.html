@@ -1,0 +1,82 @@
+{% extends "socialnetwork/base.html" %}
+
+{% load static %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+      {{user.first_name}} {{user.last_name}}
+    </a>
+  </div>
+  
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+    Home
+  </a>
+
+  <a id="id_my_trips" href="{% url 'my_trips' %}">
+    My Trips
+  </a>
+
+  <a id="id_flights" href="{% url 'flights' trip_id %}">
+    Flights
+  </a>
+
+  <form id="id_nav_logout" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit"> Logout</button>
+  </form>
+
+{% endblock %}
+
+{% block content %}
+  <a id="id_trip" href="{% url 'trip' trip_id %}">
+  Go back to trip page
+  </a>
+
+  <div class="activities-heading"> Explore Travel and Activities </div>
+
+  <div class="info-heading"> Use the search bar below to interact with Google Gemini. Please be patient as it loads. Brainstorm ideas for your next journey. </div>
+
+  <div class="gemini-container">
+
+    <div class="gemini-search-box">
+      <span id="error" class="error">{{error}}</span>
+
+      <input id="id_gem_query" class="search-icon" type="text" name="query" placeholder="Search for an activity or destination"/>
+      <button class="button_class" id="id_query_button" onclick="addGemQuery()"> Search</button>  
+      <input type="hidden" id="id_trip_hidden" value={{trip_id}}/>
+
+      <form action="{% url 'clear_gemini' trip_id %}" method="POST" class="clear-form">
+        <button class="button_class" id="id_clear_all_gemini_button" type="submit">Clear</button>
+        {% csrf_token %}
+      </form>
+    </div>
+  </div>
+
+  <div class="gem-columns">
+    <div id="gem-queries">
+      <div id="queries_title" class="col_title">
+        Gemini
+      </div>
+
+      <div id="queries-col"></div>
+    </div>
+
+    <div id="gem-notes">
+
+      <div id="note_title" class="col_title">
+        Notes
+      </div>
+
+      <div id="gem-liked_activities"></div>
+    </div>
+  </div>
+
+
+  <script>
+    loadQueries('/socialnetwork/gem_activities');
+    window.setInterval("loadQueries('/socialnetwork/gem_activities')", 5000);
+  </script>
+
+{% endblock %}
+

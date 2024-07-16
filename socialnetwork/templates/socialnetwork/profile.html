@@ -1,0 +1,123 @@
+{% extends "socialnetwork/base.html" %}
+{% load static %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+      {{user.first_name}} {{user.last_name}}
+    </a>
+  </div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+  Home
+  </a>
+
+  <a id="id_my_trips" href="{% url 'my_trips' %}">
+  My Trips
+  </a>
+
+  <form id="id_nav_logout" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit"> Logout</button>
+  </form>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row-container">
+     <div class="left-side-container">
+  
+      <div id="id_username_and_picture">
+        {% if not request.user.profile.picture and not request.user.profile.picture_url %}
+          <img src="{% static 'socialnetwork/generic_pfp.png' %}" id="id_user_picture">
+        {% elif request.user.profile.picture %}
+          <img src="{% url 'photo' request.user.id %}" id="id_user_picture">
+        {% else %}
+          <img src="{{request.user.profile.picture_url}}" id="id_user_picture">
+        {% endif %}
+
+        <div id="id_profile_name"> {{request.user.first_name}} {{request.user.last_name}}</div>
+        <div id="id_profile_username"> @{{request.user.username}}</div>
+      </div>
+
+    <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+      {{ form.as_p }}
+    
+        <button class="button_class" id="id_update_profile_button" type="submit">Submit</button>
+              
+      {% csrf_token %}
+    </form>
+
+    </div>
+
+    <div class="right-side-container">
+      <div class="find-friends-search">
+        <label class="profile-heading"> Find Friends </label>
+          
+          <div class="friends-search-box">
+            <form action="{% url 'search-user' %}" method="POST" id="find_friends_search_bar">
+              <input id="user_searched" class="search-icon" type="text" name="user_searched" placeholder="Search for a User"/>
+              <button class="button_class" id="id_search_friends_button" type="submit"> Search</button>
+              {% csrf_token %}
+
+            </form>
+            
+          </div>
+      </div>
+      <div class="error">
+        {{error}}
+      </div>
+    </div>
+
+    <div class="new_trip" id="id_TripBox"></div>
+    
+    </div>
+    <div class="right-side-container">
+      <label class="home-heading"> My Trips </label>
+      
+      <div id="trips" class="trips-grid"></div>
+
+    </div>
+</div>
+  
+<script>
+
+  const tripPageURL = function (id) {
+      return "{% url 'trip' 0 %}".replace("0", id)
+  }
+
+  const makeTripURL = function () {
+    return "{% url 'add-trip' %}"
+  }
+  
+  window.onload = getTrips;
+
+  const myUser = "{{ request.user }}"
+
+  var citySelected = false;
+
+  var cityID;
+  var commonName;
+  var destination;
+  var pic;
+
+  var userTrips = "{{ trips }}"
+
+  const deleteTripURL = function (id) {
+      return "{% url 'delete-trip' 0 %}".replace("0",id)
+  }
+
+  const leaveTripURL = function (id) {
+      return "{% url 'leave-trip' 0 %}".replace("0",id)
+  }
+
+  </script>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co&loading=async&libraries=places&callback=autofill">
+  </script>
+
+
+{% endblock %}
+

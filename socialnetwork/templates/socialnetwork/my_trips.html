@@ -1,0 +1,100 @@
+{% extends "socialnetwork/base.html" %}
+{% load static %}
+
+{% block links %}
+  <div class="profile_class">
+    <a id="id_nav_profile" href="{% url 'profile' %}">
+    {{user.first_name}} {{user.last_name}}
+    </a>
+  </div>
+
+  <a id="id_nav_global_stream" href="{% url 'global' %}">
+    Home
+  </a>
+
+  <a id="id_my_trips" href="{% url 'my_trips' %}">
+    My Trips
+  </a>
+
+  <form id="id_nav_logout" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit"> Logout</button>
+  </form>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="trip-heading"> My Trips </div>
+
+  <div class="my_trips">
+
+    <div id="autocomplete"></div>
+
+    <div class="new_trip" id="id_TripBox">
+      <label>New Trip:</label>
+      <input id="id_trip_input_text" type="text" placeholder="Enter a destination" name="destination" autocomplete="off" autofocus>
+      <label class="trip-label">Start:</label>
+      <input id="id_trip_input_startdate" class="date-input" type="date" name="start_date" autofocus>
+      <label class="trip-label">End:</label>
+      <input id="id_trip_input_enddate" class="date-input" type="date" name="end_date" autofocus>
+      <button onclick="makeTrip()"id="id_trip_button">+ Add Trip</button>
+      <span id="error" class="error"></span>
+    </div>
+
+    <div class="trip-left-heading">Upcoming Trips</div>
+    <div id="trips" class="trips-grid"></div>
+
+    <div class="scroll-prompt">
+      Scroll right to see more trips ➜
+    </div>
+
+    <div class="trip-left-heading">Past Trips</div>
+    <div id="trips-past" class="trips-grid"></div>
+
+    <div class="scroll-prompt">
+      Scroll right to see more trips ➜
+    </div>
+  </div>
+
+  <script>
+
+    const tripPageURL = function (id) {
+        return "{% url 'trip' 0 %}".replace("0", id)
+    }
+
+    const makeTripURL = function () {
+      return "{% url 'add-trip' %}"
+    }
+    
+    window.onload = getTrips;
+
+    window.setInterval(getTrips, 5000);
+
+    const myUser = "{{ request.user }}"
+
+    var citySelected = false;
+
+    var cityID;
+    var commonName;
+    var destination;
+    var pic;
+
+    var userTrips = "{{ trips }}"
+
+    const deleteTripURL = function (id) {
+        return "{% url 'delete-trip' 0 %}".replace("0",id)
+    }
+
+    const leaveTripURL = function (id) {
+        return "{% url 'leave-trip' 0 %}".replace("0",id)
+    }
+
+    </script>
+
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYLaUZ82L8WQWYqqFQ_zf-rWXcsf1C6co&loading=async&libraries=places&callback=autofill">
+    </script>
+
+{% endblock %}
+
